@@ -53,6 +53,8 @@ $ ->
 
         marker = new google.maps.Marker(options)
 
+        map.setZoom(17)
+        map.panTo(marker.position)
         select = $('#unitSelector')
         unitKey = $('option', select).eq(select[0].selectedIndex).val()
         radius = parseFloat(document.getElementById('radiusInput').value)
@@ -71,11 +73,28 @@ $ ->
           strokeOpacity: 0.62
           strokeWeight: 1
         })
+
+        google.maps.event.addListener(marker, 'dragend', (evt) ->
+          if checkIfContains evt, markerCircle
+            console.log("entro")
+          else
+            console.log("fuera")
+        )
+        google.maps.event.addListener(marker, 'dragstart', (evt) ->
+          if checkIfContains evt, markerCircle
+            console.log("entro")
+          else
+            console.log("fuera")
+        )
+
       ), ->
         handleLocationError true, infoWindow, map.getCenter()
     else
 # Browser doesn't support Geolocation
       handleLocationError false, infoWindow, map.getCenter()
+
+  checkIfContains = (e, myCircle) ->
+    return myCircle.getBounds().contains(e.latLng)
 
   circleDrawHandler = (e) ->
     # Get the radius in meters (as Google requires)

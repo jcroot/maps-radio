@@ -1,6 +1,6 @@
 (function() {
   $(function() {
-    var circleDrawHandler, clearMarkers, earthRadii, geolocate, map, markers, polygonDestructionHandler, searchBox, searchInput, updateURL;
+    var checkIfContains, circleDrawHandler, clearMarkers, earthRadii, geolocate, map, markers, polygonDestructionHandler, searchBox, searchInput, updateURL;
     markers = [];
     map = new google.maps.Map($('#map')[0], {
       zoom: 4,
@@ -56,11 +56,13 @@
             draggable: true
           };
           marker = new google.maps.Marker(options);
+          map.setZoom(17);
+          map.panTo(marker.position);
           select = $('#unitSelector');
           unitKey = $('option', select).eq(select[0].selectedIndex).val();
           radius = parseFloat(document.getElementById('radiusInput').value);
           radius = (radius / earthRadii[unitKey]) * earthRadii['mt'];
-          return markerCircle = new google.maps.Circle({
+          markerCircle = new google.maps.Circle({
             center: pos,
             clickable: true,
             draggable: false,
@@ -73,12 +75,29 @@
             strokeOpacity: 0.62,
             strokeWeight: 1
           });
+          google.maps.event.addListener(marker, 'dragend', function(evt) {
+            if (checkIfContains(evt, markerCircle)) {
+              return console.log("entro");
+            } else {
+              return console.log("fuera");
+            }
+          });
+          return google.maps.event.addListener(marker, 'dragstart', function(evt) {
+            if (checkIfContains(evt, markerCircle)) {
+              return console.log("entro");
+            } else {
+              return console.log("fuera");
+            }
+          });
         }), function() {
           return handleLocationError(true, infoWindow, map.getCenter());
         });
       } else {
         return handleLocationError(false, infoWindow, map.getCenter());
       }
+    };
+    checkIfContains = function(e, myCircle) {
+      return myCircle.getBounds().contains(e.latLng);
     };
     circleDrawHandler = function(e) {
       var circle, radius, select, unitKey;
