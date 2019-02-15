@@ -47,7 +47,7 @@
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
         return navigator.geolocation.getCurrentPosition((function(position) {
-          var latitud, longitud, marker, markerCircle, options, pos, radius, select, unitKey;
+          var dennis, latitud, longitud, marker, markerCircle, options, pos, radius, select, unitKey;
           pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
@@ -80,22 +80,35 @@
           });
           latitud = document.getElementById('lat');
           longitud = document.getElementById('lng');
+          dennis = document.getElementById('dennis');
           google.maps.event.addListener(marker, 'dragend', function(evt) {
             if (checkIfContains(evt, markerCircle)) {
               latitud.value = evt.latLng.lat();
-              return longitud.value = evt.latLng.lng();
+              longitud.value = evt.latLng.lng();
+              if (dennis) {
+                return dennis.style.display = 'none';
+              }
             } else {
               latitud.value = "";
-              return longitud.value = "";
+              longitud.value = "";
+              if (dennis) {
+                return dennis.style.display = '';
+              }
             }
           });
           return google.maps.event.addListener(marker, 'dragstart', function(evt) {
             if (checkIfContains(evt, markerCircle)) {
               latitud.value = evt.latLng.lat();
-              return longitud.value = evt.latLng.lng();
+              longitud.value = evt.latLng.lng();
+              if (dennis) {
+                return dennis.style.display = 'none';
+              }
             } else {
               latitud.value = "";
-              return longitud.value = "";
+              longitud.value = "";
+              if (dennis) {
+                return dennis.style.display = '';
+              }
             }
           });
         }), function() {
@@ -332,7 +345,7 @@
     geolocate = function() {
       if (navigator.geolocation) {
         return navigator.geolocation.getCurrentPosition((function(position) {
-          var latitud, longitud, marker, markerCircle, options, pos, radius, select, unitKey;
+          var dennis, latitud, longitud, marker, markerCircle, options, pos, radius, select, unitKey;
           pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
@@ -365,22 +378,35 @@
           });
           latitud = document.getElementById('lat');
           longitud = document.getElementById('lng');
+          dennis = document.getElementById('dennis');
           google.maps.event.addListener(marker, 'dragend', function(evt) {
             if (checkIfContains(evt, markerCircle)) {
               latitud.value = evt.latLng.lat();
-              return longitud.value = evt.latLng.lng();
+              longitud.value = evt.latLng.lng();
+              if (dennis) {
+                return dennis.style.display = 'none';
+              }
             } else {
               latitud.value = "";
-              return longitud.value = "";
+              longitud.value = "";
+              if (dennis) {
+                return dennis.style.display = '';
+              }
             }
           });
           return google.maps.event.addListener(marker, 'dragstart', function(evt) {
             if (checkIfContains(evt, markerCircle)) {
               latitud.value = evt.latLng.lat();
-              return longitud.value = evt.latLng.lng();
+              longitud.value = evt.latLng.lng();
+              if (dennis) {
+                return dennis.style.display = 'none';
+              }
             } else {
               latitud.value = "";
-              return longitud.value = "";
+              longitud.value = "";
+              if (dennis) {
+                return dennis.style.display = '';
+              }
             }
           });
         }), function() {

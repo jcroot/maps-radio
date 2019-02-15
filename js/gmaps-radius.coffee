@@ -77,21 +77,31 @@ $ ->
         latitud = document.getElementById('lat');
         longitud = document.getElementById('lng');
 
+        dennis = document.getElementById('dennis');
+
         google.maps.event.addListener(marker, 'dragend', (evt) ->
           if checkIfContains evt, markerCircle
             latitud.value = evt.latLng.lat()
             longitud.value = evt.latLng.lng()
+            if dennis
+              dennis.style.display = 'none'
           else
             latitud.value = ""
             longitud.value = ""
+            if dennis
+              dennis.style.display = ''
         )
         google.maps.event.addListener(marker, 'dragstart', (evt) ->
           if checkIfContains evt, markerCircle
             latitud.value = evt.latLng.lat()
             longitud.value = evt.latLng.lng()
+            if dennis
+              dennis.style.display = 'none'
           else
             latitud.value = ""
             longitud.value = ""
+            if dennis
+              dennis.style.display = ''
         )
 
       ), ->
