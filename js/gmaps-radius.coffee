@@ -74,17 +74,24 @@ $ ->
           strokeWeight: 1
         })
 
+        latitud = document.getElementById('lat');
+        longitud = document.getElementById('lng');
+
         google.maps.event.addListener(marker, 'dragend', (evt) ->
           if checkIfContains evt, markerCircle
-            console.log("entro")
+            latitud.value = evt.latLng.lat()
+            longitud.value = evt.latLng.lng()
           else
-            console.log("fuera")
+            latitud.value = ""
+            longitud.value = ""
         )
         google.maps.event.addListener(marker, 'dragstart', (evt) ->
           if checkIfContains evt, markerCircle
-            console.log("entro")
+            latitud.value = evt.latLng.lat()
+            longitud.value = evt.latLng.lng()
           else
-            console.log("fuera")
+            latitud.value = ""
+            longitud.value = ""
         )
 
       ), ->
@@ -116,10 +123,6 @@ $ ->
       strokeOpacity: 0.62
       strokeWeight: 1
     })
-    google.maps.event.addListener(circle, 'rightclick', polygonDestructionHandler)
-    google.maps.event.addListener(circle, 'click', circleDrawHandler)
-
-  google.maps.event.addListener(map, 'click', circleDrawHandler)
 
   searchInput = document.getElementById('searchInput')
   $(searchInput.form).on({ submit: -> false })

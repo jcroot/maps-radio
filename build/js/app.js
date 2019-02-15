@@ -47,7 +47,7 @@
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
         return navigator.geolocation.getCurrentPosition((function(position) {
-          var marker, markerCircle, options, pos, radius, select, unitKey;
+          var latitud, longitud, marker, markerCircle, options, pos, radius, select, unitKey;
           pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
@@ -78,18 +78,24 @@
             strokeOpacity: 0.62,
             strokeWeight: 1
           });
+          latitud = document.getElementById('lat');
+          longitud = document.getElementById('lng');
           google.maps.event.addListener(marker, 'dragend', function(evt) {
             if (checkIfContains(evt, markerCircle)) {
-              return console.log("entro");
+              latitud.value = evt.latLng.lat();
+              return longitud.value = evt.latLng.lng();
             } else {
-              return console.log("fuera");
+              latitud.value = "";
+              return longitud.value = "";
             }
           });
           return google.maps.event.addListener(marker, 'dragstart', function(evt) {
             if (checkIfContains(evt, markerCircle)) {
-              return console.log("entro");
+              latitud.value = evt.latLng.lat();
+              return longitud.value = evt.latLng.lng();
             } else {
-              return console.log("fuera");
+              latitud.value = "";
+              return longitud.value = "";
             }
           });
         }), function() {
@@ -110,7 +116,7 @@
       unitKey = $('option', select).eq(select[0].selectedIndex).val();
       radius = parseFloat(document.getElementById('radiusInput').value);
       radius = (radius / earthRadii[unitKey]) * earthRadii['mt'];
-      circle = new google.maps.Circle({
+      return circle = new google.maps.Circle({
         center: e.latLng,
         clickable: true,
         draggable: false,
@@ -123,10 +129,7 @@
         strokeOpacity: 0.62,
         strokeWeight: 1
       });
-      google.maps.event.addListener(circle, 'rightclick', polygonDestructionHandler);
-      return google.maps.event.addListener(circle, 'click', circleDrawHandler);
     };
-    google.maps.event.addListener(map, 'click', circleDrawHandler);
     searchInput = document.getElementById('searchInput');
     $(searchInput.form).on({
       submit: function() {
@@ -329,7 +332,7 @@
     geolocate = function() {
       if (navigator.geolocation) {
         return navigator.geolocation.getCurrentPosition((function(position) {
-          var marker, markerCircle, options, pos, radius, select, unitKey;
+          var latitud, longitud, marker, markerCircle, options, pos, radius, select, unitKey;
           pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
@@ -360,18 +363,24 @@
             strokeOpacity: 0.62,
             strokeWeight: 1
           });
+          latitud = document.getElementById('lat');
+          longitud = document.getElementById('lng');
           google.maps.event.addListener(marker, 'dragend', function(evt) {
             if (checkIfContains(evt, markerCircle)) {
-              return console.log("entro");
+              latitud.value = evt.latLng.lat();
+              return longitud.value = evt.latLng.lng();
             } else {
-              return console.log("fuera");
+              latitud.value = "";
+              return longitud.value = "";
             }
           });
           return google.maps.event.addListener(marker, 'dragstart', function(evt) {
             if (checkIfContains(evt, markerCircle)) {
-              return console.log("entro");
+              latitud.value = evt.latLng.lat();
+              return longitud.value = evt.latLng.lng();
             } else {
-              return console.log("fuera");
+              latitud.value = "";
+              return longitud.value = "";
             }
           });
         }), function() {
@@ -390,7 +399,7 @@
       unitKey = $('option', select).eq(select[0].selectedIndex).val();
       radius = parseFloat(document.getElementById('radiusInput').value);
       radius = (radius / earthRadii[unitKey]) * earthRadii['mt'];
-      circle = new google.maps.Circle({
+      return circle = new google.maps.Circle({
         center: e.latLng,
         clickable: true,
         draggable: false,
@@ -403,10 +412,7 @@
         strokeOpacity: 0.62,
         strokeWeight: 1
       });
-      google.maps.event.addListener(circle, 'rightclick', polygonDestructionHandler);
-      return google.maps.event.addListener(circle, 'click', circleDrawHandler);
     };
-    google.maps.event.addListener(map, 'click', circleDrawHandler);
     searchInput = document.getElementById('searchInput');
     $(searchInput.form).on({
       submit: function() {

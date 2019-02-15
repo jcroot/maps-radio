@@ -1,0 +1,16 @@
+#response{
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.298039);
+  -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.298039);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.298039);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background: #fff;
+  color: #666;
+  position: absolute;
+  padding: 10px;
+  top: 220px;
+  left: 10px;
+  width: 398px;
+  height: 20px
+}
